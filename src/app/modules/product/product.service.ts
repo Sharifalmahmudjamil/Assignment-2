@@ -6,8 +6,12 @@ const createProductIntoDb = async (product: Product) => {
   return result;
 };
 
-const getAllProductIntoDb = async () => {
-  const result = await ProductModel.find();
+const getAllProductIntoDb = async (searchTerm?: string) => {
+  let query = {};
+  if (searchTerm) {
+    query = { name: { $regex: searchTerm, $options: 'i' } };
+  }
+  const result = await ProductModel.find(query);
   return result;
 };
 
@@ -16,8 +20,23 @@ const getSingleProductIntoDb = async (id: string) => {
   return result;
 };
 
+const getSingleProductUpdateIntoDb = async (
+  id: string,
+  updateData: Product,
+) => {
+  const result = await ProductModel.updateOne({ id, updateData });
+  return result;
+};
+
+const deleteProductIntoDB = async (id: string) => {
+  const result = await ProductModel.deleteOne({ id });
+  return result;
+};
+
 export const ProductServices = {
   createProductIntoDb,
   getAllProductIntoDb,
   getSingleProductIntoDb,
+  getSingleProductUpdateIntoDb,
+  deleteProductIntoDB,
 };

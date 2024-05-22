@@ -27,6 +27,7 @@ const productSchema = new Schema<Product>({
   id: {
     type: String,
     required: true,
+    unique: true,
   },
   name: {
     type: String,
@@ -41,8 +42,8 @@ const productSchema = new Schema<Product>({
     required: true,
   },
   category: { type: String, required: true },
-  tags: [{ type: String }],
-  variants: [variantSchema],
+  tags: { type: [String], required: true },
+  variants: { type: [variantSchema], required: true },
   inventory: {
     type: inventorySchema,
     required: true,
