@@ -1,13 +1,11 @@
-import { Schema } from 'mongoose';
 import { z } from 'zod';
-import { Product } from './product.interface';
 
 const inventoryValidationSchema = z.object({
   quantity: z
     .number()
     .min(0)
     .nonnegative({ message: 'Quantity must be a non-negative integer.' })
-    .int({ message: 'Quantity must be an integer.' }),
+    .int({ message: 'Quantity must be used integer.' }),
   inStock: z.boolean({ message: 'InStock must be a boolean value.' }),
 });
 
@@ -25,7 +23,7 @@ const productValidationSchema = z.object({
     .number()
     .nonnegative({ message: 'Price must be a non-negative number.' }),
   category: z.string({ message: 'Category is required and must be a string.' }),
-  tags: z.array(z.string({ message: 'Each tag must be a string.' })),
+  tags: z.array(z.string({ message: 'Each tag must be use string.' })),
   variants: z.array(variantValidationSchema),
   inventory: inventoryValidationSchema,
 });

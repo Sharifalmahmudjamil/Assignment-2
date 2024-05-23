@@ -11,7 +11,7 @@ const OrderValidationSchema = z.object({
   quantity: z
     .number({ required_error: 'Quantity is required' })
     .int({ message: 'Quantity must be an integer' })
-    .positive({ message: 'Quantity must be a positive number' }),
+    .positive({ message: 'Quantity must be use positive number' }),
 });
 
 export default OrderValidationSchema;
