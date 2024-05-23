@@ -18,6 +18,10 @@ const createProduct = async (req: Request, res: Response) => {
       message: 'Product is create successfully',
       data: result,
     });
+    return res.status(500).json({
+      success: false,
+      message: `${ProductData.name} is already exists`,
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -53,7 +57,7 @@ const getAllProduct = async (req: Request, res: Response) => {
 
 const getSingleProduct = async (req: Request, res: Response) => {
   try {
-    const { productId } = req.params;
+    const { productId } = req.body;
 
     const result = await ProductServices.getSingleProductIntoDb(productId);
     //   send response
@@ -98,7 +102,7 @@ const updateSingleProduct = async (req: Request, res: Response) => {
 // product delete
 const deleteSingleProduct = async (req: Request, res: Response) => {
   try {
-    const { productId } = req.params;
+    const { productId } = req.body;
     const result = await ProductServices.deleteProductIntoDB(productId);
     res.status(200).json({
       success: true,

@@ -17,7 +17,6 @@ const variantValidationSchema = z.object({
 });
 
 const productValidationSchema = z.object({
-  id: z.string({ message: 'ID is required and must be a string.' }),
   name: z.string({ message: 'Name is required and must be a string.' }),
   description: z.string({
     message: 'Description is required and must be a string.',

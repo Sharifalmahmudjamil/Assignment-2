@@ -24,11 +24,6 @@ const variantSchema = new Schema<Variant>({
 });
 
 const productSchema = new Schema<Product>({
-  id: {
-    type: String,
-    required: true,
-    unique: true,
-  },
   name: {
     type: String,
     required: true,

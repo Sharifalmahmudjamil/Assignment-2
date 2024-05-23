@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongoose';
 import { Product } from './product.interface';
 import { ProductModel } from './product.model';
 
@@ -15,21 +16,21 @@ const getAllProductIntoDb = async (searchTerm?: string) => {
   return result;
 };
 
-const getSingleProductIntoDb = async (id: string) => {
-  const result = await ProductModel.findOne({ id });
+const getSingleProductIntoDb = async (productId: ObjectId) => {
+  const result = await ProductModel.findOne({ productId });
   return result;
 };
 
 const getSingleProductUpdateIntoDb = async (
-  id: string,
+  productId: string,
   updateData: Product,
 ) => {
-  const result = await ProductModel.findOneAndUpdate({ id, updateData });
+  const result = await ProductModel.findOneAndUpdate({ productId, updateData });
   return result;
 };
 
-const deleteProductIntoDB = async (id: string) => {
-  const result = await ProductModel.deleteOne({ id });
+const deleteProductIntoDB = async (productId: ObjectId) => {
+  const result = await ProductModel.deleteOne({ productId });
   return result;
 };
 
