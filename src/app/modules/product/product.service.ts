@@ -25,7 +25,9 @@ const getSingleProductUpdateIntoDb = async (
   productId: string,
   updateData: Product,
 ) => {
-  const result = await ProductModel.findOneAndUpdate({ productId, updateData });
+  const result = await ProductModel.findByIdAndUpdate(productId, updateData, {
+    new: true,
+  });
   return result;
 };
 
